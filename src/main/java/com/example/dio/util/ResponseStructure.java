@@ -4,7 +4,7 @@ import lombok.*;
 import org.springframework.http.HttpStatus;
 
 @Getter
-@Setter
+
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -23,4 +23,6 @@ public class ResponseStructure <T>{
       return responseStructure;
 
     }
+
+
 }
