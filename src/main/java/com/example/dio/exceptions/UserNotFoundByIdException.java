@@ -1,4 +1,11 @@
 package com.example.dio.exceptions;
 
-public class UserNotFoundByIdException {
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@Getter
+@AllArgsConstructor
+public class UserNotFoundByIdException extends RuntimeException{
+    private final String message;
+
 }
