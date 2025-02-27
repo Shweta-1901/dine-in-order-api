@@ -1,12 +1,16 @@
 package com.example.dio.service.impl;
 
+
+import com.example.dio.exceptions.UserNotFoundByIdException;
 import com.example.dio.model.Admin;
 import com.example.dio.model.Staff;
 import com.example.dio.model.User;
+
 import com.example.dio.repository.UserRepository;
 import com.example.dio.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
 
 @Service
 @AllArgsConstructor
@@ -26,7 +30,7 @@ public class UserServiceImpl implements UserService {
 
         switch (user.getUserRole()){
             case Admin -> user2=new Admin();
-            case Staff -> user2 = new Staff();
+            case Staff-> user2 = new Staff();
             default -> throw new RuntimeException("Failed to register");
 
         }
@@ -43,5 +47,15 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    @Override
+    public User findUserById(long userId){
+        return userRepository.findById(userId)
+                .orElseThrow(()-> new UserNotFoundByIdException("Failed to find user, user not found bu id"));
+
+//        User user2=this.getUser(userId);
+//        this.mapToNewUser(userId,user2);
+//        return userRepository.findById(userId);
+
+    }
 
 }
