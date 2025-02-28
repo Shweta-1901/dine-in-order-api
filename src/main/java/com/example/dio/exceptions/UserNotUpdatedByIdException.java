@@ -5,6 +5,10 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class UserNotUpdatedById extends RuntimeException{
-    private String message;
+public class UserNotUpdatedByIdException extends RuntimeException{
+   public UserNotUpdatedByIdException (String message){
+       super(message);
+   }
+
+
 }
