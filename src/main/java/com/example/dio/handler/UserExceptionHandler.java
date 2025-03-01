@@ -1,6 +1,7 @@
 package com.example.dio.handler;
 
 import com.example.dio.exceptions.UserNotFoundByIdException;
+import com.example.dio.exceptions.UserNotUpdatedByIdException;
 import com.example.dio.util.ResponseBuilder;
 import com.example.dio.util.SimpleErrorResponse;
 import org.springframework.http.HttpStatus;
@@ -12,5 +13,9 @@ public class UserExceptionHandler {
 
     public ResponseEntity<SimpleErrorResponse> getMessage(UserNotFoundByIdException ex){
         return ResponseBuilder.error(HttpStatus.NOT_FOUND, ex.getMessage());
+    }
+
+    public ResponseEntity<SimpleErrorResponse> getMessage(UserNotUpdatedByIdException e){
+        return ResponseBuilder.error(HttpStatus.NOT_MODIFIED, e.getMessage());
     }
 }

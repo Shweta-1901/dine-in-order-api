@@ -13,6 +13,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
+
 @RestController
 @AllArgsConstructor
 
@@ -44,6 +46,7 @@ public class UserController {
     public ResponseEntity<ResponseStructure<UserResponse>> updateUserById( @PathVariable long userId, @RequestBody UserRequest userRequest){
         UserResponse userResponse = userService.updateUserNameById(userRequest,userId);
         return ResponseBuilder.success(HttpStatus.OK,"user not updated",userResponse);
-  //  return userService.updateUserNameById(userId,updatedUser);
+
+
     }
 }
