@@ -8,10 +8,13 @@ import com.example.dio.model.User;
 import com.example.dio.service.UserService;
 import com.example.dio.util.ResponseBuilder;
 import com.example.dio.util.ResponseStructure;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+
 
 @RestController
 @AllArgsConstructor
@@ -21,7 +24,7 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/register")
-    public ResponseEntity<ResponseStructure<UserResponse>> registerUser(@RequestBody RegistrationRequest registrationRequest) {
+    public ResponseEntity<ResponseStructure<UserResponse>> registerUser(@RequestBody @Valid RegistrationRequest registrationRequest) {
       UserResponse  user = userService.registerUser(registrationRequest);
     return ResponseBuilder.success(HttpStatus.CREATED, "User Created",user);
     }
@@ -41,9 +44,10 @@ public class UserController {
         return ResponseBuilder.success(HttpStatus.OK, "User Found",user);
     }
 @PutMapping("/users/{userId}")
-    public ResponseEntity<ResponseStructure<UserResponse>> updateUserById( @PathVariable long userId, @RequestBody UserRequest userRequest){
+    public ResponseEntity<ResponseStructure<UserResponse>> updateUserById( @PathVariable long userId, @RequestBody  UserRequest userRequest){
         UserResponse userResponse = userService.updateUserNameById(userRequest,userId);
         return ResponseBuilder.success(HttpStatus.OK,"user not updated",userResponse);
-  //  return userService.updateUserNameById(userId,updatedUser);
+
+
     }
 }
