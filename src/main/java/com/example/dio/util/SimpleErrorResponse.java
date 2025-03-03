@@ -4,9 +4,11 @@ package com.example.dio.util;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.experimental.SuperBuilder;
 
 @Getter
-@Builder
+//@Builder
+@SuperBuilder
 @AllArgsConstructor
 public class SimpleErrorResponse {
     private String type;

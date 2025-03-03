@@ -3,6 +3,9 @@ package com.example.dio.util;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.w3c.dom.stylesheets.LinkStyle;
+
+import java.util.List;
 
 public class ResponseBuilder {
 
@@ -27,6 +30,19 @@ public class ResponseBuilder {
                 .build();
         return ResponseEntity.status(status)
                 .body(error);
+    }
+
+
+    public static ResponseEntity<FieldErrorResponse> error(HttpStatus status, String message, List<FieldErrorResponse.CustomFieldError> fieldError){
+        FieldErrorResponse errorResponse= FieldErrorResponse.builder()
+                .type(status.name())
+                .message(message)
+                .status(status.value())
+                .fieldErrors(fieldError)
+                .build();
+
+        return ResponseEntity.status(status)
+                .body(errorResponse);
     }
 
 }
